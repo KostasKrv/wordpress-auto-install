@@ -19,11 +19,9 @@ done
 
 DOMAIN_SAFE=$(echo $DOMAIN | sed 's/[\._-]//g')
 
-NEW_UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
+NEW_UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 4 | head -n 1)
 dbname="${DOMAIN_SAFE}_db_$NEW_UUID"
-NEW_UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
 dbuser="${DOMAIN_SAFE}_user_$NEW_UUID"
-NEW_UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
 dbpass="${DOMAIN_SAFE}_pass_$NEW_UUID"
 mysqlhost="localhost"
 dbtable="wp_"
