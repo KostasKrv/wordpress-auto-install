@@ -17,12 +17,13 @@ while getopts d:u:p: option
 	esac
 done
 
-DOMAIN_SAFE=$(echo $DOMAIN | sed 's/[\._-]//g')
+# We cut to 20 because of the 32 characters limit on db names/users/pass
+DOMAIN_SAFE=$(echo $DOMAIN | sed 's/[\._-]//g' | cut -c -20)
 
 NEW_UUID=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 4 | head -n 1)
 dbname="${DOMAIN_SAFE}_db_$NEW_UUID"
 dbuser="${DOMAIN_SAFE}_user_$NEW_UUID"
-dbpass="${DOMAIN_SAFE}_pass_$NEW_UUID"
+dbpass=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
 mysqlhost="localhost"
 dbtable="wp_"
 
