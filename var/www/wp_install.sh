@@ -33,7 +33,7 @@ echo "============================================"
 echo "Setting up the database."
 echo "============================================"
 #login to MySQL, add database, add user and grant permissions
-dbsetup="CREATE DATABASE $dbname;GRANT ALL PRIVILEGES ON $dbname.* TO $dbuser@$mysqlhost IDENTIFIED BY '$dbpass';FLUSH PRIVILEGES;"
+dbsetup="SET GLOBAL validate_password_policy=LOW;CREATE DATABASE $dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;GRANT ALL PRIVILEGES ON $dbname.* TO $dbuser@$mysqlhost IDENTIFIED BY '$dbpass';FLUSH PRIVILEGES;"
 echo "DB query: $dbsetup"
 mysql -u $MYSQLUSER --password=$MYSQLPASS -e "$dbsetup"
 if [ $? != "0" ]; then
