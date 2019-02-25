@@ -3,7 +3,7 @@ This script will install wordpress within a blink of an eye.
 
 ### Usage
 
-wp_install.sh -d test.com -u A_ROOT_USERNAME -p A_ROOT_PASSWORD
+./wp_install.sh -d test.com -u A_ROOT_USERNAME -p A_ROOT_PASSWORD
 
 The installation script will:
 
